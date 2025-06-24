@@ -28,7 +28,7 @@ CLIENT_ID = "ESP_32"
 
 #OAT
 
-firmware_url = "https://raw.githubusercontent.com/<TobHorstmann>/<OAT>/<main>"
+firmware_url = "https://raw.githubusercontent.com/TobHorstmann/OAT/main"
 
 ota_updater = OTAUpdater(SSID, PASSWORD, firmware_url, "OTA_Test.py")
 ota_updater.download_and_install_update_if_available()
