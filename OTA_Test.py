@@ -26,12 +26,6 @@ CLIENT_ID = "ESP_32"
 
 #################################################################################################################
 
-#OAT
-
-firmware_url = "https://raw.githubusercontent.com/TobHorstmann/OAT/main"
-
-ota_updater = OTAUpdater(SSID, PASSWORD, firmware_url, "OTA_Test.py")
-ota_updater.download_and_install_update_if_available()
 
 # Mit WLAN verbinden
 def connectWIFI():
@@ -47,6 +41,13 @@ def connectWIFI():
 
 # Hauptprogramm
 try:
+    
+    #OAT
+
+    firmware_url = "https://raw.githubusercontent.com/TobHorstmann/OAT/"
+    ota_updater = OTAUpdater(SSID, PASSWORD, firmware_url, "OTA_Test.py")
+    ota_updater.download_and_install_update_if_available()
+    
     wlan = connectWIFI()
 
     client = MQTTClient(CLIENT_ID, BROKER, PORT)
@@ -70,7 +71,7 @@ try:
     print("Gehe in Deep Sleep für 55 Sekunden...")
 
     time.sleep(1)  # kurz warten, damit alles sicher abgeschlossen ist
-    deepsleep(56000)
+    deepsleep(55000)
 
 except Exception as e:
     print("Fehler:", e)
