@@ -9,12 +9,6 @@ import json
 
 #################################################################################################################
 
-#OAT
-
-firmware_url = "https://raw.githubusercontent.com/<TobHorstmann>/<OAT>/<main>"
-
-ota_updater = OTAUpdater(SSID, PASSWORD, firmware_url, "test.py")
-ota_updater.download_and_install_update_if_available()
 
 #################################################################################################################
 
@@ -24,19 +18,20 @@ sensor_aht10 = AHT10(i2c)
 
 #################################################################################################################
 
-# WLAN-Zugangsdaten
-SSID = "BZTG-IoT"
-PASSWORD = "WerderBremen24"
-
-#################################################################################################################
-
 # MQTT-Daten
-BROKER = "192.168.1.210"
+BROKER = "192.168.1.212"
 PORT = 1883
 TOPIC = "BZTG"
 CLIENT_ID = "ESP_32"
 
 #################################################################################################################
+
+#OAT
+
+firmware_url = "https://raw.githubusercontent.com/<TobHorstmann>/<OAT>/<main>"
+
+ota_updater = OTAUpdater(SSID, PASSWORD, firmware_url, "OTA_Test.py")
+ota_updater.download_and_install_update_if_available()
 
 # Mit WLAN verbinden
 def connectWIFI():
@@ -75,7 +70,7 @@ try:
     print("Gehe in Deep Sleep für 55 Sekunden...")
 
     time.sleep(1)  # kurz warten, damit alles sicher abgeschlossen ist
-    deepsleep(55000)
+    deepsleep(57000)
 
 except Exception as e:
     print("Fehler:", e)
