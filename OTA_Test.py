@@ -52,11 +52,10 @@ try:
     print(f"Daten gesendet: {json_data}")
 
     client.disconnect()
-    wlan.disconnect()
     print("Gehe in Deep Sleep für 55 Sekunden...")
 
     time.sleep(1)  # kurz warten, damit alles sicher abgeschlossen ist
-    deepsleep(55000)
+    deepsleep(58000)
 
 except Exception as e:
     print("Fehler:", e)
