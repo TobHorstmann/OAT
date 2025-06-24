@@ -9,6 +9,8 @@ import json
 
 #################################################################################################################
 
+firmware_url = "https://raw.githubusercontent.com/TobHorstmann/OAT/"
+ota_updater = OTAUpdater(SSID, PASSWORD, firmware_url, "OTA_Test.py")
 
 #################################################################################################################
 
@@ -26,30 +28,13 @@ CLIENT_ID = "ESP_32"
 
 #################################################################################################################
 
-
-# Mit WLAN verbinden
-def connectWIFI():
-    wlan = network.WLAN(network.STA_IF)
-    wlan.active(True)
-    wlan.connect(SSID, PASSWORD)
-    while not wlan.isconnected():
-        pass
-    print("WLAN verbunden:", wlan.ifconfig())
-    return wlan  # Rückgabe zur späteren Trennung
-
-#################################################################################################################
-
 # Hauptprogramm
 try:
     
     #OAT
 
-    firmware_url = "https://raw.githubusercontent.com/TobHorstmann/OAT/"
-    ota_updater = OTAUpdater(SSID, PASSWORD, firmware_url, "OTA_Test.py")
     ota_updater.download_and_install_update_if_available()
     
-    wlan = connectWIFI()
-
     client = MQTTClient(CLIENT_ID, BROKER, PORT)
     client.connect()
     print(f"MQTT verbunden mit {BROKER}")
